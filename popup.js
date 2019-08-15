@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
   var clearButton = document.getElementById("clearButton");
   clearButton.addEventListener("click", clearArray, false);
 
+  document.getElementById("userInput").addEventListener('keypress', function(event) {
+    if (event.keyCode == 13) {
+      addStringToArray();
+    }
+  });
+
   populateText();
 }, false);
 
