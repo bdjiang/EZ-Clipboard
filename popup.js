@@ -14,7 +14,8 @@ function populateText() {
     function(data) {
       console.log(data.list); //printing what was "got" for debugging
       for(var i= 0; i < data.list.length; i++) {
-        document.getElementById("masterBoard").innerHTML += data.list[i];
+        document.getElementById("masterBoard").innerHTML += data.list[i]; //update user facing
+        document.getElementById("masterBoard").innerHTML += "<br>";
       }
     }
   );
@@ -33,7 +34,8 @@ function addStringToArray() {
 
 function update(clipboardContents) {
   clipboardContents.push(readFromClipboard()); //call helper function that simply grabs text
-  document.getElementById("masterBoard").innerHTML += readFromClipboard();
+  document.getElementById("masterBoard").innerHTML += readFromClipboard(); //update user facing
+  document.getElementById("masterBoard").innerHTML += "<br>";
   chrome.storage.sync.set({list:clipboardContents}, function() { //update storage!
     console.log(readFromClipboard() + " added to list with new values"); //debugging
   });
@@ -50,7 +52,7 @@ function readFromClipboard() {
 function clearArray() {
   emptyArray = [];
   chrome.storage.sync.set({list:emptyArray}, function() { //update storage
-    document.getElementById("masterBoard").innerHTML = "";
+    document.getElementById("masterBoard").innerHTML = ""; //update user facing element
     console.log("list cleared!"); //debugging
   });
 
